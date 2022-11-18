@@ -10,6 +10,11 @@ def penguin_specie():
     resp = db["pinguinos_size"].distinct("species")
     return resp
 
+@router.get("/island/all")
+def penguin_specie():
+    resp = db["pinguinos_size"].distinct("island")
+    return resp
+
 @router.get("/specie/{specie}")
 def penguin_specie(specie:str):
     filter = {"species":specie.capitalize()}
@@ -37,3 +42,4 @@ def penguin_culmen():
     project = {"_id":0, "species":1, "culmen_length_mm":1, "culmen_depth_mm":1}
     resp = db["pinguinos_size"].find(filter, project)
     return loads(json_util.dumps(resp))
+
